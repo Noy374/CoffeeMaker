@@ -1,4 +1,4 @@
-package com.example.coffeebrew.payload.request;
+package com.example.coffeemaker.payload.request;
 
 
 import com.fasterxml.jackson.annotation.JsonCreator;

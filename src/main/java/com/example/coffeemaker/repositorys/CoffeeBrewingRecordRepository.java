@@ -1,6 +1,6 @@
-package com.example.coffeebrew.repositorys;
+package com.example.coffeemaker.repositorys;
 
-import com.example.coffeebrew.entity.CoffeeBrewingRecord;
+import com.example.coffeemaker.entity.CoffeeBrewingRecord;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +17,6 @@ public interface CoffeeBrewingRecordRepository extends JpaRepository<CoffeeBrewi
     @Query("UPDATE CoffeeBrewingRecord u SET u.endTime = :now WHERE u.id= :id")
     @Transactional
     void updateEndTime(@Param("id") Long id, @Param("now") LocalDateTime now);
+
+
 }

@@ -1,4 +1,4 @@
-package com.example.coffeebrew.payload.response;
+package com.example.coffeemaker.payload.response;
 
 
 import lombok.AllArgsConstructor;

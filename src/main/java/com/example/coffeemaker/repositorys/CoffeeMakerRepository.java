@@ -1,7 +1,7 @@
-package com.example.coffeebrew.repositorys;
+package com.example.coffeemaker.repositorys;
 
 
-import com.example.coffeebrew.entity.CoffeeMaker;
+import com.example.coffeemaker.entity.CoffeeMaker;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

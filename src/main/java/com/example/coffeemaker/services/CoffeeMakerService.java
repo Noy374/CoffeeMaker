@@ -1,21 +1,21 @@
-package com.example.coffeebrew.services;
+package com.example.coffeemaker.services;
 
 
-import com.example.coffeebrew.entity.CoffeeMaker;
-import com.example.coffeebrew.payload.request.AddCoffeeMakerRequest;
-import com.example.coffeebrew.repositorys.CoffeeMakerRepository;
+import com.example.coffeemaker.entity.CoffeeMaker;
+import com.example.coffeemaker.payload.request.AddCoffeeMakerRequest;
+import com.example.coffeemaker.repositorys.CoffeeMakerRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class CoffeeMakerService {
 
     private final CoffeeMakerRepository coffeeMakerRepository;
 
-    public CoffeeMakerService(CoffeeMakerRepository coffeeMakerRepository) {
-        this.coffeeMakerRepository = coffeeMakerRepository;
-    }
+    private final CoffeeHouseService coffeeHouseService;
 
     private CoffeeMaker fromCMRToCM(AddCoffeeMakerRequest request){
         CoffeeMaker coffeeMaker =new CoffeeMaker();
@@ -23,8 +23,9 @@ public class CoffeeMakerService {
         return coffeeMaker;
     }
 
-    public Long addAndGetId(AddCoffeeMakerRequest request) {
+    public Long addAndGetId(AddCoffeeMakerRequest request,String coffeeHouseUsername) {
         CoffeeMaker coffeeMaker =fromCMRToCM(request);
+        coffeeMaker.setCoffeeHouse(coffeeHouseService.getUserByUsername(coffeeHouseUsername));
         coffeeMakerRepository.save(coffeeMaker);
         return coffeeMaker.getId();
     }

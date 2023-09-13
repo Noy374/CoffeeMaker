@@ -1,10 +1,8 @@
-package com.example.coffeebrew.payload.request;
+package com.example.coffeemaker.payload.request;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-
-import java.time.LocalDateTime;
 
 @Data
 public class StartedBrewingCoffeeRequest {

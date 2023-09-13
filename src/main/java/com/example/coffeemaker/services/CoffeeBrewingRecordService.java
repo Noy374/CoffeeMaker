@@ -1,12 +1,14 @@
-package com.example.coffeebrew.services;
+package com.example.coffeemaker.services;
 
 
-import com.example.coffeebrew.entity.CoffeeBrewingRecord;
-import com.example.coffeebrew.repositorys.CoffeeBrewingRecordRepository;
+import com.example.coffeemaker.entity.CoffeeBrewingRecord;
+import com.example.coffeemaker.entity.CoffeeMaker;
+import com.example.coffeemaker.repositorys.CoffeeBrewingRecordRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CoffeeBrewingRecordService {
@@ -17,8 +19,12 @@ public class CoffeeBrewingRecordService {
         this.coffeeBrewingRecordRepository = coffeeBrewingRecordRepository;
     }
 
-    public void creatCoffeeBrewingRecord(CoffeeBrewingRecord coffeeBrewingRecord) {
+    public Long creatCoffeeBrewingRecord(CoffeeMaker coffeeMaker) {
+        CoffeeBrewingRecord coffeeBrewingRecord=new CoffeeBrewingRecord();
+        coffeeBrewingRecord.setCoffeeMaker(coffeeMaker);
+        coffeeBrewingRecord.setStartTime(LocalDateTime.now());
         coffeeBrewingRecordRepository.save(coffeeBrewingRecord);
+        return coffeeBrewingRecord.getId();
     }
 
     public boolean updateEndTime(Long id, LocalDateTime now) {
@@ -30,6 +36,10 @@ public class CoffeeBrewingRecordService {
     }
 
     public List<CoffeeBrewingRecord> getAllById(Long id) {
-       return coffeeBrewingRecordRepository.findAll();
+        return coffeeBrewingRecordRepository
+                .findAll()
+                .stream()
+                .filter(record -> record.getCoffeeMaker().getId().equals(id))
+                .collect(Collectors.toList());
     }
 }

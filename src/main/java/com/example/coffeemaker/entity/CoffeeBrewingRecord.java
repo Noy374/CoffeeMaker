@@ -1,9 +1,7 @@
-package com.example.coffeebrew.entity;
+package com.example.coffeemaker.entity;
 
 
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -17,10 +15,10 @@ public class CoffeeBrewingRecord {
     private LocalDateTime startTime;
     private LocalDateTime endTime;
 
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(
-            name = "coffee_machine_id",
+            name = "coffee_maker_id",
             referencedColumnName = "id"
     )
     private CoffeeMaker coffeeMaker;

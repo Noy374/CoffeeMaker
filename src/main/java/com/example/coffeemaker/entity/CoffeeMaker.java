@@ -1,4 +1,4 @@
-package com.example.coffeebrew.entity;
+package com.example.coffeemaker.entity;
 
 import javax.persistence.*;
 
@@ -19,5 +19,11 @@ public class CoffeeMaker {
     @OneToMany(mappedBy = "coffeeMaker")
     private List<CoffeeBrewingRecord> coffeeBrewingRecord;
 
-
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(
+            name = "coffee_house_id",
+            referencedColumnName = "id"
+    )
+    private CoffeeHouse coffeeHouse;
 }
